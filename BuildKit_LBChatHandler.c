@@ -1,4 +1,4 @@
-#ifndef LB_DISABLE_CHAT
+ #ifndef LB_DISABLE_CHAT
 modded class LBChatHandler
 {
     override bool ChatCommandExists(string cmd)
