@@ -1,0 +1,150 @@
+{
+    "Loadout_TacticalBlack": {
+        "headgear": "CDAJ_OpscoreV2_Helmet_Black",
+        "headgear_attachments": [
+            "CDAJ_OpscoreV2_BatteryPack_Black",
+            "CDAJ_OpscoreV2_Headphones_Black",
+            "CDAJ_OpscoreV2_IRLIGHT"
+        ],
+        "glasses": "CDAJ_Thermal_Balaclava_Black",
+        "top": "CDAJ_OpscoreV2_Shirt_Rolled_Black",
+        "pants": "CDAJ_OpscoreV2_Pants_Black",
+        "vest": "CDAJ_Vest_TacTecV2_Full_Black",
+        "vest_attachments": [
+            "CDAJ_Utility_Pouch_Black",
+            "CDAJ_Medkit_Pouch_Black"
+        ],
+        "shoes": "CDAJ_OCV2_Boots_Black",
+        "gloves": "CDAJ_Mechanix_Gloves_Black",
+        "back": "AssaultBag_Black"
+    },
+
+    "Loadout_CivilianFashion": {
+        "headgear": "BeanieHat_Pink",
+        "glasses": "DesignerGlasses",
+        "top": "CDAJ_Trenchcoat_Brown",
+        "pants": "Skirt_Black",
+        "vest": "PressVest_Blue",
+        "shoes": "HighBoots_Brown",
+        "gloves": "CDAJ_Mechanix_Gloves_Tan",
+        "back": "LeatherBag_Brown"
+    },
+
+    "Loadout_WeaponsRanger": {
+        "headgear": "CDAJ_OpscoreV2_Helmet_RG",
+        "headgear_attachments": [
+            "CDAJ_OpscoreV2_BatteryPack_RG",
+            "CDAJ_OpscoreV2_Headphones_RG",
+            "CDAJ_PVS31_Wide_FDE"
+        ],
+        "glasses": "TacticalGoggles",
+        "top": "CDAJ_OpscoreV2_Shirt_Rolled_RG",
+        "pants": "CDAJ_OpscoreV2_Pants_RG",
+        "vest": "CDAJ_Vest_TacTecV2_Full_RG",
+        "vest_attachments": [
+            "CDAJ_Utility_Pouch_RG",
+            "CDAJ_Medkit_Pouch_RG"
+        ],
+        "shoes": "CDAJ_OCV2_Boots_RG",
+        "gloves": "CDAJ_Mechanix_Gloves_RG",
+        "back": "AssaultBag_Green"
+    },
+
+    "Loadout_Mechanic": {
+        "headgear": "CDAJ_Mechanic_Cap_Blue",
+        "glasses": "Eyeglasses",
+        "top": "CDAJ_Mechanic_Jacket_Blue",
+        "pants": "CDAJ_Mechanic_Pants_Blue",
+        "vest": "CDAJ_ToolVest_Blue",
+        "vest_attachments": [
+            "CDAJ_ToolPouch_Blue"
+        ],
+        "shoes": "CDAJ_WorkBoots_Brown",
+        "gloves": "CDAJ_Mechanix_Gloves_Tan",
+        "back": "CDAJ_ToolBag_Blue"
+    },
+
+    "Loadout_PilotOpscore": {
+        "headgear": "CDAJ_OpscoreV2_Helmet_MC",
+        "headgear_attachments": [
+            "CDAJ_OpscoreV2_BatteryPack_MC",
+            "CDAJ_OpscoreV2_Headphones_MC",
+            "CDAJ_PVS31_Wide_FDE"
+        ],
+        "glasses": "AviatorGlasses",
+        "top": "CDAJ_OpscoreV2_Shirt_Rolled_MC",
+        "pants": "CDAJ_OpscoreV2_Pants_MC",
+        "vest": "CDAJ_Vest_TacTecV2_Full_MC",
+        "vest_attachments": [
+            "CDAJ_Utility_Pouch_MC",
+            "CDAJ_Medkit_Pouch_MC"
+        ],
+        "shoes": "CDAJ_OCV2_Boots_Tan",
+        "gloves": "CDAJ_Mechanix_Gloves_Tan",
+        "back": "Paragon_BackPouch_Navy",
+        "belt": "MilitaryBelt",
+        "belt_attachments": [
+            "Canteen",
+            "CombatKnife"
+        ]
+    },
+
+    "Loadout_SurvivalWoodland": {
+        "headgear": "CDAJ_BoonieHat_Woodland",
+        "glasses": "TacticalGoggles",
+        "top": "CDAJ_Combat_Shirt_Woodland",
+        "pants": "CDAJ_Combat_Pants_Woodland",
+        "vest": "CDAJ_Vest_TacTecV2_Full_Woodland",
+        "vest_attachments": [
+            "CDAJ_Utility_Pouch_Woodland",
+            "CDAJ_Medkit_Pouch_Woodland"
+        ],
+        "shoes": "CDAJ_OCV2_Boots_Woodland",
+        "gloves": "CDAJ_Mechanix_Gloves_Woodland",
+        "back": "CDAJ_FieldPack_Woodland"
+    },
+
+    "Loadout_DrugDealer": {
+        "headgear": "BaseballCap_Black",
+        "glasses": "SportGlasses_Black",
+        "top": "Hoodie_Black",
+        "pants": "Jeans_Black",
+        "vest": "CDAJ_ChestRig_Black",
+        "vest_attachments": [
+            "CDAJ_Utility_Pouch_Black"
+        ],
+        "shoes": "Sneakers_Black",
+        "gloves": "CDAJ_Mechanix_Gloves_Black",
+        "back": "SmershBag_Black",
+        "belt": "CivilianBelt",
+        "belt_attachments": [
+            "Canteen",
+            "CombatKnife"
+        ]
+    },
+
+    "Loadout_BlackMarket": {
+        "headgear": "CDAJ_OpscoreV2_Helmet_Black",
+        "headgear_attachments": [
+            "CDAJ_OpscoreV2_BatteryPack_Black",
+            "CDAJ_OpscoreV2_Headphones_Black",
+            "CDAJ_PVS31_Wide_FDE"
+        ],
+        "glasses": "BalaclavaMask_Black",
+        "top": "CDAJ_Combat_Shirt_Black",
+        "pants": "CDAJ_Combat_Pants_Black",
+        "vest": "CDAJ_Vest_TacTecV2_Full_Black",
+        "vest_attachments": [
+            "CDAJ_Utility_Pouch_Black",
+            "CDAJ_Medkit_Pouch_Black"
+        ],
+        "shoes": "CDAJ_OCV2_Boots_Black",
+        "gloves": "CDAJ_Mechanix_Gloves_Black",
+        "back": "CDAJ_FieldPack_Black",
+        "belt": "MilitaryBelt",
+        "belt_attachments": [
+            "Canteen",
+            "CombatKnife"
+        ]
+    }
+}
