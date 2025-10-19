@@ -1,43 +1,44 @@
-#define _ARMA_
-
 class CfgPatches
 {
-    class lbbuildkit
+    class SloppyBuildKits
     {
         units[] = {};
         weapons[] = {};
         requiredVersion = 0.1;
-        requiredAddons[] = { "DZ_Data", "LBmaster_AdminTools", "LBmaster_GroupsServer" };
-        type = "mod";
+        requiredAddons[] = {"LBmaster_GroupsServer"}; // Required dependency
     };
 };
 
 class CfgMods
 {
-    class lbbuildkit
+    class SloppyBuildKits
     {
-        dir = "lbbuildkit";
-        name = "LB Build Kit";
-        author = "sloppy";
+        dir = "SloppyBuildKits";
+        picture = "";
+        action = "";
+        hideName = 1;
+        hidePicture = 1;
+        name = "SloppyBuildKits";
+        credits = "YourName";
+        author = "YourName";
+        authorID = "";
         version = "1.0";
+        extra = 0;
         type = "mod";
-        dependencies[] = { "Game", "World", "Mission" };
+        
+        dependencies[] = {"World"};
+        
         class defs
         {
-            class gameScriptModule
-            {
-                value = "";
-                files[] = { "lbbuildkit/scripts/3_Game" };
-            };
             class worldScriptModule
             {
                 value = "";
-                files[] = { "lbbuildkit/scripts/4_World" };
+                files[] = {"SloppyBuildKits/Scripts/4_World"};
             };
             class missionScriptModule
             {
                 value = "";
-                files[] = { "lbbuildkit/scripts/5_Mission" };
+                files[] = {"SloppyBuildKits/Scripts/5_Mission"};
             };
         };
     };
