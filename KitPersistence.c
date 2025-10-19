@@ -1,57 +1,100 @@
-class KitClaimData
-{
-    ref map<string, bool> OneTimeKits;
-    ref map<string, float> CooldownKits;
-
-    void KitClaimData()
-    {
-        OneTimeKits = new map<string, bool>;
-        CooldownKits = new map<string, float>;
-    }
-}
-
 class KitPersistence
 {
-    private ref map<string, ref KitClaimData> m_PlayerKitData;
-    private const string STORAGE_FOLDER = "$profile:KitSystem";
-    private const string PLAYER_DATA_FILE = "PlayerKitData.json";
+    private const string STORAGE_PATH = "$profile:KitSystem/PlayerKitData.json";
+    private ref map<string, ref map<string, float>> m_KitData;
 
     void KitPersistence()
     {
-        m_PlayerKitData = new map<string, ref KitClaimData>;
+        m_KitData = new map<string, ref map<string, float>>;
         LoadData();
+        EnsureDefaultSections();
     }
 
     private void LoadData()
     {
-        if (!FileExist(STORAGE_FOLDER))
-            MakeDirectory(STORAGE_FOLDER);
+        if (!FileExist("$profile:KitSystem"))
+            MakeDirectory("$profile:KitSystem");
 
-        string filePath = STORAGE_FOLDER + "/" + PLAYER_DATA_FILE;
-        if (FileExist(filePath))
-            JsonFileLoader<map<string, ref KitClaimData>>.JsonLoadFile(filePath, m_PlayerKitData);
+        if (FileExist(STORAGE_PATH))
+        {
+            JsonFileLoader<map<string, ref map<string, float>>>.JsonLoadFile(STORAGE_PATH, m_KitData);
+        }
         else
+        {
             SaveData();
+        }
     }
 
-    void SaveData()
+    private void SaveData()
     {
-        string filePath = STORAGE_FOLDER + "/" + PLAYER_DATA_FILE;
-        JsonFileLoader<map<string, ref KitClaimData>>.JsonSaveFile(filePath, m_PlayerKitData);
+        JsonFileLoader<map<string, ref map<string, float>>>.JsonSaveFile(STORAGE_PATH, m_KitData);
     }
 
-    KitClaimData GetPlayerData(string playerId)
+    private void EnsureDefaultSections()
     {
-        if (!m_PlayerKitData.Contains(playerId))
-            m_PlayerKitData.Set(playerId, new KitClaimData());
-        return m_PlayerKitData.Get(playerId);
+        array<string> defaultKits = {"kit", "builder", "daily", "vip"};
+        foreach (string kitName : defaultKits)
+        {
+            if (!m_KitData.Contains(kitName))
+                m_KitData.Set(kitName, new map<string, float>);
+        }
+        SaveData();
     }
 
-    void ResetKitClaim(string playerId, string kitName)
+    private void EnsureKit(string kitName)
     {
-        KitClaimData data = GetPlayerData(playerId);
-        data.OneTimeKits.Remove(kitName);
-        data.CooldownKits.Remove(kitName);
+        if (!m_KitData.Contains(kitName))
+            m_KitData.Set(kitName, new map<string, float>);
+    }
+
+    void MarkClaimed(string playerId, string kitName)
+    {
+        EnsureKit(kitName);
+        m_KitData.Get(kitName).Set(playerId, 1);
+        SaveData();
+    }
+
+    void MarkCooldown(string playerId, string kitName, float nextAvailableTime)
+    {
+        EnsureKit(kitName);
+        m_KitData.Get(kitName).Set(playerId, nextAvailableTime);
+        SaveData();
+    }
+
+    bool HasClaimed(string playerId, string kitName)
+    {
+        if (!m_KitData.Contains(kitName)) return false;
+        if (!m_KitData.Get(kitName).Contains(playerId)) return false;
+        return m_KitData.Get(kitName).Get(playerId) == 1;
+    }
+
+    bool CanClaimCooldown(string playerId, string kitName)
+    {
+        if (!m_KitData.Contains(kitName)) return true;
+        if (!m_KitData.Get(kitName).Contains(playerId)) return true;
+
+        float storedTime = m_KitData.Get(kitName).Get(playerId);
+        return GetGame().GetTime() >= storedTime;
+    }
+
+    void ResetPlayerKit(string playerId, string kitName)
+    {
+        EnsureKit(kitName);
+        m_KitData.Get(kitName).Remove(playerId);
+        SaveData();
+    }
+
+    void ResetKit(string kitName)
+    {
+        EnsureKit(kitName);
+        m_KitData.Get(kitName).Clear();
+        SaveData();
+    }
+
+    void ResetAll()
+    {
+        m_KitData.Clear();
+        EnsureDefaultSections();
         SaveData();
     }
 }
