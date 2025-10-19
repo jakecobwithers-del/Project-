@@ -1,0 +1,89 @@
+class BuildKitCommand
+{
+    // Data structures
+    class BuildKitItem
+    {
+        string classname;
+        int    quantity;
+        float  health = 100.0;       // Item health percentage (0-100)
+        bool   attachMagazine = false; // For weapons, auto-attach magazine
+    }
+
+    class BuildKitEntry
+    {
+        string                          permission;
+        float                           cooldown_hours;
+        bool                            daily_reset = false;  // Reset usage on new day
+        ref array<ref BuildKitItem>     items;
+    }
+
+    class BuildKitConfig
+    {
+        ref map<string, ref BuildKitEntry> kits;
+        ref array<string>                  vip_ids;
+        ref map<string, string>            messages;
+        bool                               log_usage = true;  // Log kit usage to server logs
+        string                             version = "1.0";
+    }
+
+    // Persistence data
+    class KitUsageData
+    {
+        ref map<string, ref array<string>> usedKits;
+        ref map<string, ref map<string, float>> cooldowns;
+        int lastResetDay = -1;
+    }
+    // File paths
+    static string CONFIG_DIR = "$profile:\\SloppyBuildKits";
+    static string CONFIG_PATH = CONFIG_DIR + "\\BuildKitConfig.json";
+    static string USAGE_PATH = CONFIG_DIR + "\\BuildKitUsage.json";
+    
+    // Module state
+    private ref BuildKitConfig m_Config;
+    private ref KitUsageData m_UsageData;
+    private int m_CurrentDay = -1;
+    
+    void Init()
+    {
+        if (!m_Config)
+        {
+            m_Config = LoadConfig();
+            m_UsageData = LoadUsageData();
+            
+            // Setup daily reset check
+            GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(CheckDailyReset, 60000, true);
+            
+            // Get current day for reset tracking
+            int year, month, day;
+            GetGame().GetWorld().GetDate(year, month, day);
+            m_CurrentDay = day;
+        }
+    }
+    BuildKitConfig LoadConfig()
+    {
+        // Ensure directory exists
+        if (!FileExist(CONFIG_DIR))
+        {
+            MakeDirectory(CONFIG_DIR);
+            Print("[Sloppy BuildKits] Created directory: " + CONFIG_DIR);
+        }
+        
+        // Create default config if it doesn't exist
+        if (!FileExist(CONFIG_PATH))
+        {
+            CreateDefaultConfig();
+        }
+        
+        // Load config
+        BuildKitConfig config = new BuildKitConfig();
+        JsonFileLoader<BuildKitConfig>.JsonLoadFile(CONFIG_PATH, config);
+        
+        if (!config)
+        {
+            Print("[Sloppy BuildKits] ERROR: Failed to load config. Creating new one.");
+            config = CreateDefaultConfig();
+        }
+        
+        Print("[Sloppy BuildKits] Loaded " + config.kits.Count() + " kit definitions");
+        return config;
+    }
