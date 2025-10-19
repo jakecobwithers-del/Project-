@@ -1,0 +1,37 @@
+{
+    "starter": {
+        "Name": "starter",
+        "Items": [
+            { "ClassName": "Canteen", "Quantity": 1 },
+            { "ClassName": "TacticalBaconCan", "Quantity": 2 },
+            { "ClassName": "BandageDressing", "Quantity": 5 }
+        ],
+        "OneTimeOnly": true
+    },
+    "build": {
+        "Name": "build",
+        "Items": [
+            { "ClassName": "Hammer", "Quantity": 1 },
+            { "ClassName": "Nail", "Quantity": 50 },
+            { "ClassName": "WoodenPlank", "Quantity": 10 }
+        ],
+        "OneTimeOnly": true
+    },
+    "vip": {
+        "Name": "vip",
+        "Items": [
+            { "ClassName": "M4A1", "Quantity": 1 },
+            { "ClassName": "Mag_STANAG_30Rnd", "Quantity": 3 }
+        ],
+        "OneTimeOnly": false
+    },
+    "daily": {
+        "Name": "daily",
+        "Items": [
+            { "ClassName": "Apple", "Quantity": 2 },
+            { "ClassName": "SodaCan_Cola", "Quantity": 1 },
+            { "ClassName": "BandageDressing", "Quantity": 1 }
+        ],
+        "CooldownHours": 24
+    }
+}
