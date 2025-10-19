@@ -1,9 +1,8 @@
 #ifndef LB_DISABLE_CHAT
-
 modded class LBChatHandler
 {
     private ref KitManager m_KitManager;
-    
+
     override void LBChatHandler()
     {
         if (!m_KitManager && GetGame().IsServer())
@@ -12,13 +11,12 @@ modded class LBChatHandler
             m_KitManager.LoadConfig();
         }
     }
-    
+
     override bool ChatCommandExists(string cmd)
     {
         if (super.ChatCommandExists(cmd))
             return true;
 
-        // Our kit commands
         return (cmd == "kit" || cmd == "buildkit" || cmd == "vip" || cmd == "daily" || cmd == "kits" || cmd == "kithelp" || cmd == "resetkit");
     }
 
@@ -27,15 +25,12 @@ modded class LBChatHandler
         if (super.HasPermission(sender, cmd))
             return true;
 
-        // Basic kit commands available to all players
         if (cmd == "kit" || cmd == "buildkit" || cmd == "daily" || cmd == "kits" || cmd == "kithelp")
             return true;
 
-        // VIP kit requires permission check
         if (cmd == "vip")
             return m_KitManager.HasPermission(sender, "vip");
 
-        // Reset kit requires admin permission
         if (cmd == "resetkit")
             return m_KitManager.HasPermission(sender, "admin");
 
@@ -57,29 +52,17 @@ modded class LBChatHandler
         }
 
         if (cmd == "kit")
-        {
             m_KitManager.GiveKit(player, "starter");
-        }
         else if (cmd == "buildkit")
-        {
             m_KitManager.GiveKit(player, "build");
-        }
         else if (cmd == "vip")
-        {
             m_KitManager.GiveKit(player, "vip");
-        }
         else if (cmd == "daily")
-        {
             m_KitManager.GiveKit(player, "daily");
-        }
         else if (cmd == "kits")
-        {
             m_KitManager.ShowAvailableKits(player);
-        }
         else if (cmd == "kithelp")
-        {
             m_KitManager.ShowKitHelp(player);
-        }
         else if (cmd == "resetkit")
         {
             if (args.Count() >= 2)
@@ -95,5 +78,4 @@ modded class LBChatHandler
         }
     }
 }
-
 #endif
