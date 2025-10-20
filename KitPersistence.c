@@ -76,25 +76,4 @@ class KitPersistence
         float storedTime = m_KitData.Get(kitName).Get(playerId);
         return GetGame().GetTime() >= storedTime;
     }
-
-    void ResetPlayerKit(string playerId, string kitName)
-    {
-        EnsureKit(kitName);
-        m_KitData.Get(kitName).Remove(playerId);
-        SaveData();
-    }
-
-    void ResetKit(string kitName)
-    {
-        EnsureKit(kitName);
-        m_KitData.Get(kitName).Clear();
-        SaveData();
-    }
-
-    void ResetAll()
-    {
-        m_KitData.Clear();
-        EnsureDefaultSections();
-        SaveData();
-    }
 }
